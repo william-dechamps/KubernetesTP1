@@ -112,3 +112,24 @@ spec:
 ```
 kubectl port-forward phpmyadmin-pod 8080:80
 ```
+
+**e**. Ajouter un Ingress pour accéder à phpmyadmin sans utiliser la commande kubectl port-forward
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: phpmyadmin-ingress
+spec:
+  rules:
+    - host: phpmyadmin.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: phpmyadmin-pod
+                port:
+                  number: 80
+```
