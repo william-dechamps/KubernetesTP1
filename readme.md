@@ -106,3 +106,9 @@ spec:
       ports:
         - containerPort: 80
 ```
+
+**d**. - Avec la commande kubectl-port forward, vérifier que phpmyadmin arrive à contacter et administrer votre base de données mysql
+
+```
+kubectl port-forward phpmyadmin-pod 8080:80
+```
