@@ -8,5 +8,12 @@ spec:
   containers:
     - name: phpmyadmin
       image: phpmyadmin/phpmyadmin:latest
+      env:
+        - name: PMA_HOST
+          value: mysql-service
+        - name: PMA_USER
+          value: root
+        - name: PMA_PASSWORD
+          value: password
       ports:
         - containerPort: 80
