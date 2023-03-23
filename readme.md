@@ -2,7 +2,7 @@
 
 **a**. Héberger un premier Pod Nginx
 
-```
+```yaml
 ApiVersion: v1
 kind: Pod
 metadata:
@@ -30,7 +30,7 @@ kubectl port-forward pod/pod-nginx 3000:80
 #### **Exercice 3**
 
 **a**. A l’image du TP 1 sur Docker (question 7 et 8), héberger un Pod phpmyadmin et mysql, cette fois-ci en utilisant kind
-```
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -45,7 +45,7 @@ spec:
         - containerPort: 80
 ```
 
-```
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -61,4 +61,20 @@ spec:
           value: password
       ports:
         - containerPort: 3306
+```
+
+**b**. Créer un service associé au Pod mysql  
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-service
+spec:
+  selector:
+    app: mysql
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
+  type: ClusterIP
 ```
